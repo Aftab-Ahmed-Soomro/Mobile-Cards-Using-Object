@@ -139,7 +139,7 @@ function mobileCollection() {
     <p class="card-text ">Color : ${mobiles[i].color}</p>
     <p class="card-text ">Specs : ${mobiles[i].spec}</p>
     <p class="card-text ">Price : ${mobiles[i].price}</p>
-    <a href="${mobiles[i].location}" target="_blank" class="btn mt-1 bg-primary-subtle">Check it out</a>
+    <a href="${mobiles[i].location}" target="_blank" class="btn mt-1 bg-secondary-subtle">Check it out</a>
     </div>
     </div>`;
     }
