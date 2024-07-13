@@ -128,10 +128,10 @@ let mobiles = [{
     location : 'https://www.gsmarena.com/samsung_galaxy_a55-12824.php'
 }];
 
+let main = document.getElementById('main');
 function mobileCollection() {
-    let main = document.getElementById('main');
     for (let i = 0; i < mobiles.length; i++) {
-        main.innerHTML += `<div class="card ms-3 mb-4 main2" style="width:18.6rem;">
+        main.innerHTML += `<div class="card ms-3 mb-4 main2" style="width:18rem;">
     <img src="${mobiles[i].img}" class="card-img-top pana mt-3" alt="...">
     <div class="card-body d-flex flex-column">
     <h5 class="card-title text-center mb-3">${mobiles[i].mobileName}</h5>
@@ -146,3 +146,38 @@ function mobileCollection() {
 }
 
 mobileCollection();
+
+let input = document.getElementById('input');
+let error = document.getElementById('error');
+
+function searchingF() {
+    main.innerHTML = '';
+    if (input.value.trim()=='') {
+        error.innerText = '';
+        mobileCollection();
+        return;
+    }
+    let filteredData = mobiles.filter((v)=> {
+        return v.brand.toLowerCase() == input.value.toLowerCase();   
+    })
+    if (filteredData.length < 1) {
+        error.innerText = 'NOT FOUND'
+        setTimeout(()=>{
+            error.innerText = '';
+        }, 2000);
+    }
+    filteredData.forEach((v)=> {
+        error.innerText = '';
+        main.innerHTML += `<div class="card ms-3 mb-4 main2" style="width:18rem;">
+        <img src="${v.img}" class="card-img-top pana mt-3" alt="...">
+        <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-center mb-3">${v.mobileName}</h5>
+        <p class="card-text ">Brand : ${v.brand}</p>
+        <p class="card-text ">Color : ${v.color}</p>
+        <p class="card-text ">Specs : ${v.spec}</p>
+        <p class="card-text ">Price : ${v.price}</p>
+        <a href="${v.location}" target="_blank" class="btn mt-1 bg-secondary-subtle">Check it out</a>
+        </div>
+        </div>`;
+    })
+}
